@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/basic_movie.dart';
 import 'package:movies_app/models/models.dart';
-import 'package:movies_app/models/movie2.dart';
+import 'package:movies_app/models/normal_movie.dart';
 
 class MovieSlider extends StatelessWidget {
   // const MovieSlider({Key? key}) : super(key: key);
-  List<Movie2> movies;
+  List<NormalMovie> movies;
   MovieSlider({required this.movies});
 
   @override
@@ -50,7 +50,7 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  final Movie2 movie;
+  final NormalMovie movie;
 
   const _MoviePoster({Key? key, required this.movie}) : super(key: key);
 

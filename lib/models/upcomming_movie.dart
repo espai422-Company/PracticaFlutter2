@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Movie {
+class UpcommingMovie {
   String id;
   String resultId;
   PrimaryImage? primaryImage;
@@ -10,7 +10,7 @@ class Movie {
   ReleaseYear? releaseYear;
   ReleaseDate? releaseDate; // Nullable ReleaseDate
 
-  Movie({
+  UpcommingMovie({
     required this.id,
     required this.resultId,
     required this.primaryImage,
@@ -21,11 +21,12 @@ class Movie {
     required this.releaseDate,
   });
 
-  factory Movie.fromRawJson(String str) => Movie.fromJson(json.decode(str));
+  factory UpcommingMovie.fromRawJson(String str) =>
+      UpcommingMovie.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
+  factory UpcommingMovie.fromJson(Map<String, dynamic> json) => UpcommingMovie(
         id: json["_id"],
         resultId: json["id"],
         primaryImage: json["primaryImage"] == null

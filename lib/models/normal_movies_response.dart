@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:movies_app/models/movie2.dart';
+import 'package:movies_app/models/normal_movie.dart';
 
 class NormalMoviesResponse {
   int page;
   String next;
   int entries;
-  List<Movie2> results;
+  List<NormalMovie> results;
 
   NormalMoviesResponse({
     required this.page,
@@ -25,8 +25,8 @@ class NormalMoviesResponse {
         page: json["page"],
         next: json["next"],
         entries: json["entries"],
-        results:
-            List<Movie2>.from(json["results"].map((x) => Movie2.fromJson(x))),
+        results: List<NormalMovie>.from(
+            json["results"].map((x) => NormalMovie.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

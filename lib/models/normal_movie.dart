@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:movies_app/models/normal_movies_response.dart';
 
-import 'movie.dart' as mv;
+import 'upcomming_movie.dart' as mv;
 
-class Movie2 {
+class NormalMovie {
   String id;
   String resultId;
   PrimaryImage? primaryImage;
@@ -13,7 +13,7 @@ class Movie2 {
   mv.ReleaseYear releaseYear;
   ReleaseDate? releaseDate;
 
-  Movie2({
+  NormalMovie({
     required this.id,
     required this.resultId,
     required this.primaryImage,
@@ -24,11 +24,12 @@ class Movie2 {
     required this.releaseDate,
   });
 
-  factory Movie2.fromRawJson(String str) => Movie2.fromJson(json.decode(str));
+  factory NormalMovie.fromRawJson(String str) =>
+      NormalMovie.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Movie2.fromJson(Map<String, dynamic> json) => Movie2(
+  factory NormalMovie.fromJson(Map<String, dynamic> json) => NormalMovie(
         id: json["_id"],
         resultId: json["id"],
         primaryImage: json["primaryImage"] == null

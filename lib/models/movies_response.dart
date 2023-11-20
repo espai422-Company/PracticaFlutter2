@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:movies_app/models/movie.dart';
-import 'package:movies_app/models/movie2.dart';
+import 'package:movies_app/models/upcomming_movie.dart';
 
 class MoviesResponse {
   int page;
   String next;
   int entries;
-  List<Movie> results;
+  List<UpcommingMovie> results;
 
   MoviesResponse({
     required this.page,
@@ -25,8 +24,8 @@ class MoviesResponse {
         page: json["page"],
         next: json["next"],
         entries: json["entries"],
-        results:
-            List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
+        results: List<UpcommingMovie>.from(
+            json["results"].map((x) => UpcommingMovie.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

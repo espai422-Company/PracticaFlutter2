@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/basic_movie.dart';
-import 'package:movies_app/models/movie.dart';
+import 'package:movies_app/models/upcomming_movie.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -21,10 +21,9 @@ class DetailsScreen extends StatelessWidget {
               [
                 _PosterAndTitile(movie: peli),
                 _Overview(movie: peli),
-                // _Overview(movie: peli),
-                // CastingCards(
-                //   movie: peli,
-                // ),
+                CastingCards(
+                  movie: peli,
+                ),
               ],
             ),
           ),

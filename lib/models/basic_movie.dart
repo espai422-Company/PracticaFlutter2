@@ -1,5 +1,5 @@
-import 'package:movies_app/models/movie.dart';
-import 'package:movies_app/models/movie2.dart';
+import 'package:movies_app/models/upcomming_movie.dart';
+import 'package:movies_app/models/normal_movie.dart';
 
 class BasicMovie {
   String title;
@@ -14,7 +14,7 @@ class BasicMovie {
     required this.releaseYear,
   });
 
-  factory BasicMovie.fromMovie(Movie movie) => BasicMovie(
+  factory BasicMovie.fromMovie(UpcommingMovie movie) => BasicMovie(
         title: movie.titleText == null ? 'NO TITLE' : movie.titleText!.text,
         originalTitle: movie.originalTitleText == null
             ? 'NO ORIGINAL TITLE'
@@ -24,7 +24,7 @@ class BasicMovie {
             movie.releaseYear ?? ReleaseYear(year: 0, typename: '', endYear: 0),
       );
 
-  factory BasicMovie.fromMovie2(Movie2 movie) => BasicMovie(
+  factory BasicMovie.fromMovie2(NormalMovie movie) => BasicMovie(
         title: movie.titleText == null ? 'NO TITLE' : movie.titleText.text,
         originalTitle: movie.originalTitleText == null
             ? 'NO ORIGINAL TITLE'
