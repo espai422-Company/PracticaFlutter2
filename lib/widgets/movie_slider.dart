@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/basic_movie.dart';
 import 'package:movies_app/models/models.dart';
-import 'package:movies_app/models/normal_movie.dart';
 
 class MovieSlider extends StatelessWidget {
   // const MovieSlider({Key? key}) : super(key: key);
@@ -29,7 +27,7 @@ class MovieSlider extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text('Populars',
+            child: Text('Nostalgic',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           ),
           SizedBox(

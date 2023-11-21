@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
-
 import 'package:http/http.dart' as http;
-import 'package:movies_app/models/actors_response.dart';
 import 'package:movies_app/models/models.dart';
-import 'package:movies_app/models/normal_movie.dart';
-import 'package:movies_app/models/normal_movies_response.dart';
 
 class MoviesProvider extends ChangeNotifier {
   String _baseUrl = 'https://moviesdatabase.p.rapidapi.com';
@@ -17,7 +13,7 @@ class MoviesProvider extends ChangeNotifier {
   Map<int, List<Actor>> casting = {};
 
   MoviesProvider() {
-    print('MoviesProvider inicializado');
+    print('hola');
     this.getOnDisplayMovies();
     this.getOnPopularMovies();
   }
@@ -59,7 +55,7 @@ class MoviesProvider extends ChangeNotifier {
       'X-RapidAPI-Key': 'e261fe5c1cmsheeb3731d4a3b275p15f337jsnb6c825996c77',
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     };
-    var params = {'page': '9'};
+    var params = {'page': (idMovie % 9).toString()};
 
     var response = await http.get(
       url.replace(queryParameters: params),
@@ -67,14 +63,6 @@ class MoviesProvider extends ChangeNotifier {
     );
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print('***************************************************');
-    try {
-      print(ActorsResponse.fromJson(jsonResponse));
-    } catch (e) {
-      print(e);
-    }
-    print(ActorsResponse.fromJson(jsonResponse).results);
-    print('***************************************************');
     return ActorsResponse.fromJson(jsonResponse).results;
   }
 }

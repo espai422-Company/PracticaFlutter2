@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:movies_app/models/actor.dart';
+import 'package:movies_app/models/models.dart';
 
 class ActorsResponse {
   String page;

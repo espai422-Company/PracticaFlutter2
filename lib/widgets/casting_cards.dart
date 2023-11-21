@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/actor.dart';
-import 'package:movies_app/models/basic_movie.dart';
-import 'package:movies_app/models/upcomming_movie.dart';
+import 'package:movies_app/models/models.dart';
 import 'package:movies_app/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -12,13 +10,9 @@ class CastingCards extends StatelessWidget {
   Widget build(BuildContext context) {
     final movies_provider = Provider.of<MoviesProvider>(context);
     return FutureBuilder<List<Actor>>(
-      // future: movies_provider.getMovieCast(movie.id.),
-      future: movies_provider.getMovieCast(1),
+      future: movies_provider.getMovieCast(movie.hashCode),
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
-        print('------------------------------');
-        print(snapshot.data);
-        print('------------------------------');
         if (!snapshot.hasData) {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
@@ -50,19 +44,56 @@ class _CastCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
-      width: 110,
+      width: 150,
       height: 100,
       // color: Colors.green,
-      child: Column(
-        children: [
-          Text(
-            actor.primaryName,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-          )
-        ],
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Name',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              CustomText(text: actor.primaryName),
+              SizedBox(height: 5),
+              Text(
+                'Profession',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              CustomText(text: actor.primaryProfession),
+              SizedBox(height: 5),
+              Text(
+                'Birth and Death',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              CustomText(text: actor.birthYear.toString()),
+              CustomText(text: actor.deathYear.toString()),
+            ],
+          ),
+        ),
       ),
+    );
+  }
+}
+
+class CustomText extends StatelessWidget {
+  const CustomText({
+    super.key,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      // textAlign: TextAlign.center,
     );
   }
 }

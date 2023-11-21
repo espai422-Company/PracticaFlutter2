@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:movies_app/models/normal_movies_response.dart';
-
-import 'upcomming_movie.dart' as mv;
+import 'package:movies_app/models/models.dart';
 
 class NormalMovie {
   String id;
@@ -10,7 +7,7 @@ class NormalMovie {
   TitleType titleType;
   TitleText titleText;
   TitleText originalTitleText;
-  mv.ReleaseYear releaseYear;
+  ReleaseYear releaseYear;
   ReleaseDate? releaseDate;
 
   NormalMovie({
@@ -38,7 +35,7 @@ class NormalMovie {
         titleType: TitleType.fromJson(json["titleType"]),
         titleText: TitleText.fromJson(json["titleText"]),
         originalTitleText: TitleText.fromJson(json["originalTitleText"]),
-        releaseYear: mv.ReleaseYear.fromJson(json["releaseYear"]),
+        releaseYear: ReleaseYear.fromJson(json["releaseYear"]),
         releaseDate: json["releaseDate"] == null
             ? null
             : ReleaseDate.fromJson(json["releaseDate"]),

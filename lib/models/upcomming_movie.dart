@@ -3,12 +3,12 @@ import 'dart:convert';
 class UpcommingMovie {
   String id;
   String resultId;
-  PrimaryImage? primaryImage;
-  TitleType? titleType;
-  TitleText? titleText;
-  TitleText? originalTitleText;
+  MainImage? primaryImage;
+  TitleType2? titleType;
+  TitleContent? titleText;
+  TitleContent? originalTitleText;
   ReleaseYear? releaseYear;
-  ReleaseDate? releaseDate; // Nullable ReleaseDate
+  ReleaseDates? releaseDate; // Nullable ReleaseDate
 
   UpcommingMovie({
     required this.id,
@@ -31,14 +31,14 @@ class UpcommingMovie {
         resultId: json["id"],
         primaryImage: json["primaryImage"] == null
             ? null
-            : PrimaryImage.fromJson(json["primaryImage"]),
-        titleType: TitleType.fromJson(json["titleType"]),
-        titleText: TitleText.fromJson(json["titleText"]),
-        originalTitleText: TitleText.fromJson(json["originalTitleText"]),
+            : MainImage.fromJson(json["primaryImage"]),
+        titleType: TitleType2.fromJson(json["titleType"]),
+        titleText: TitleContent.fromJson(json["titleText"]),
+        originalTitleText: TitleContent.fromJson(json["originalTitleText"]),
         releaseYear: ReleaseYear.fromJson(json["releaseYear"]),
         releaseDate: json["releaseDate"] == null
             ? null
-            : ReleaseDate.fromJson(json["releaseDate"]),
+            : ReleaseDates.fromJson(json["releaseDate"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -55,21 +55,21 @@ class UpcommingMovie {
 
 // Your other classes remain unchanged...
 
-class TitleText {
+class TitleContent {
   String text;
   String typename;
 
-  TitleText({
+  TitleContent({
     required this.text,
     required this.typename,
   });
 
-  factory TitleText.fromRawJson(String str) =>
-      TitleText.fromJson(json.decode(str));
+  factory TitleContent.fromRawJson(String str) =>
+      TitleContent.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TitleText.fromJson(Map<String, dynamic> json) => TitleText(
+  factory TitleContent.fromJson(Map<String, dynamic> json) => TitleContent(
         text: json["text"],
         typename: json["__typename"],
       );
@@ -80,15 +80,15 @@ class TitleText {
       };
 }
 
-class PrimaryImage {
+class MainImage {
   String id;
   int width;
   int height;
   String url;
-  Caption caption;
+  Captions caption;
   String typename;
 
-  PrimaryImage({
+  MainImage({
     required this.id,
     required this.width,
     required this.height,
@@ -97,17 +97,17 @@ class PrimaryImage {
     required this.typename,
   });
 
-  factory PrimaryImage.fromRawJson(String str) =>
-      PrimaryImage.fromJson(json.decode(str));
+  factory MainImage.fromRawJson(String str) =>
+      MainImage.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory PrimaryImage.fromJson(Map<String, dynamic> json) => PrimaryImage(
+  factory MainImage.fromJson(Map<String, dynamic> json) => MainImage(
         id: json["id"],
         width: json["width"],
         height: json["height"],
         url: json["url"],
-        caption: Caption.fromJson(json["caption"]),
+        caption: Captions.fromJson(json["caption"]),
         typename: json["__typename"],
       );
 
@@ -121,20 +121,21 @@ class PrimaryImage {
       };
 }
 
-class Caption {
+class Captions {
   String plainText;
   String typename;
 
-  Caption({
+  Captions({
     required this.plainText,
     required this.typename,
   });
 
-  factory Caption.fromRawJson(String str) => Caption.fromJson(json.decode(str));
+  factory Captions.fromRawJson(String str) =>
+      Captions.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Caption.fromJson(Map<String, dynamic> json) => Caption(
+  factory Captions.fromJson(Map<String, dynamic> json) => Captions(
         plainText: json["plainText"],
         typename: json["__typename"],
       );
@@ -145,25 +146,25 @@ class Caption {
       };
 }
 
-class ReleaseDate {
+class ReleaseDates {
   int day;
   int month;
   int year;
   String typename;
 
-  ReleaseDate({
+  ReleaseDates({
     required this.day,
     required this.month,
     required this.year,
     required this.typename,
   });
 
-  factory ReleaseDate.fromRawJson(String str) =>
-      ReleaseDate.fromJson(json.decode(str));
+  factory ReleaseDates.fromRawJson(String str) =>
+      ReleaseDates.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ReleaseDate.fromJson(Map<String, dynamic> json) => ReleaseDate(
+  factory ReleaseDates.fromJson(Map<String, dynamic> json) => ReleaseDates(
         day: json["day"],
         month: json["month"],
         year: json["year"],
@@ -205,9 +206,14 @@ class ReleaseYear {
         "endYear": endYear,
         "__typename": typename,
       };
+
+  @override
+  String toString() {
+    return 'Release Year: $year-${endYear ?? 'present'}';
+  }
 }
 
-class TitleType {
+class TitleType2 {
   DisplayableProperty displayableProperty;
   String text;
   String id;
@@ -217,7 +223,7 @@ class TitleType {
   bool canHaveEpisodes;
   String typename;
 
-  TitleType({
+  TitleType2({
     required this.displayableProperty,
     required this.text,
     required this.id,
@@ -228,12 +234,12 @@ class TitleType {
     required this.typename,
   });
 
-  factory TitleType.fromRawJson(String str) =>
-      TitleType.fromJson(json.decode(str));
+  factory TitleType2.fromRawJson(String str) =>
+      TitleType2.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TitleType.fromJson(Map<String, dynamic> json) => TitleType(
+  factory TitleType2.fromJson(Map<String, dynamic> json) => TitleType2(
         displayableProperty:
             DisplayableProperty.fromJson(json["displayableProperty"]),
         text: json["text"],
@@ -284,7 +290,7 @@ class Category {
 }
 
 class DisplayableProperty {
-  Caption value;
+  Captions value;
   String typename;
 
   DisplayableProperty({
@@ -299,7 +305,7 @@ class DisplayableProperty {
 
   factory DisplayableProperty.fromJson(Map<String, dynamic> json) =>
       DisplayableProperty(
-        value: Caption.fromJson(json["value"]),
+        value: Captions.fromJson(json["value"]),
         typename: json["__typename"],
       );
 

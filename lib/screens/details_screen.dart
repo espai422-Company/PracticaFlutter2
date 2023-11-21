@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/basic_movie.dart';
-import 'package:movies_app/models/upcomming_movie.dart';
+import 'package:movies_app/models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -54,7 +54,7 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black12,
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
-            'movie.titleText.text',
+            movie.title,
             style: TextStyle(fontSize: 16),
           ),
         ),
@@ -94,24 +94,18 @@ class _PosterAndTitile extends StatelessWidget {
           Column(
             children: [
               Text(
-                'movie.titleText.text',
+                movie.title,
                 style: textTheme.headline5,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
               Text(
-                'movie.originalTitleText.text',
+                movie.originalTitle,
                 style: textTheme.subtitle1,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
-              Row(
-                children: [
-                  const Icon(Icons.star_outline, size: 15, color: Colors.grey),
-                  const SizedBox(width: 5),
-                  Text('${movie.releaseYear}', style: textTheme.caption),
-                ],
-              )
+              Text('${movie.releaseYear.year}', style: textTheme.caption),
             ],
           )
         ],

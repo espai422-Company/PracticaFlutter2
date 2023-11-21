@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:movies_app/models/normal_movie.dart';
+import 'package:movies_app/models/models.dart';
 
 class NormalMoviesResponse {
   int page;

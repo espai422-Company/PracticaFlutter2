@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:movies_app/models/upcomming_movie.dart';
+import 'package:movies_app/models/models.dart';
 
 class MoviesResponse {
   int page;

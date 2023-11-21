@@ -1,7 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/basic_movie.dart';
-import 'package:movies_app/models/upcomming_movie.dart';
+import 'package:movies_app/models/models.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<UpcommingMovie> movies;

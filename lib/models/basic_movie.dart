@@ -1,5 +1,4 @@
-import 'package:movies_app/models/upcomming_movie.dart';
-import 'package:movies_app/models/normal_movie.dart';
+import 'package:movies_app/models/models.dart';
 
 class BasicMovie {
   String title;
