@@ -14,11 +14,12 @@ class MoviesProvider extends ChangeNotifier {
 
   MoviesProvider() {
     print('hola');
-    this.getOnDisplayMovies();
-    this.getOnPopularMovies();
+    this.getIncomingMovies();
+    this.getNostalgicMovies();
   }
 
-  getOnDisplayMovies() async {
+  getIncomingMovies() async {
+    // http headers
     Map<String, String> _headers = {
       'X-RapidAPI-Key': _apiKey,
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com',
@@ -33,7 +34,8 @@ class MoviesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  getOnPopularMovies() async {
+  getNostalgicMovies() async {
+    // http headers
     Map<String, String> _headers = {
       'X-RapidAPI-Key': _apiKey,
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com',
@@ -52,9 +54,11 @@ class MoviesProvider extends ChangeNotifier {
   Future<List<Actor>> getMovieCast(int idMovie) async {
     var url = Uri.parse('${_baseUrl}/actors');
     var headers = {
-      'X-RapidAPI-Key': 'e261fe5c1cmsheeb3731d4a3b275p15f337jsnb6c825996c77',
+      // http headers
+      'X-RapidAPI-Key': _apiKey,
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     };
+    // Randomize actors because of API failure
     var params = {'page': (idMovie % 9).toString()};
 
     var response = await http.get(

@@ -14,15 +14,16 @@ class DetailsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           _CustomAppBar(
-            movie: peli,
+            movie: peli, // Displaying a custom app bar for movie details
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                _PosterAndTitile(movie: peli),
-                _Overview(movie: peli),
+                _PosterAndTitile(
+                    movie: peli), // Displaying movie poster and title
+                _Overview(movie: peli), // Displaying movie overview
                 CastingCards(
-                  movie: peli,
+                  movie: peli, // Displaying casting cards for the movie
                 ),
               ],
             ),
@@ -35,13 +36,15 @@ class DetailsScreen extends StatelessWidget {
 
 class _CustomAppBar extends StatelessWidget {
   final BasicMovie movie;
+
+  // Constructor for _CustomAppBar widget taking a BasicMovie object as a parameter
   const _CustomAppBar({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Exactament igual que la AppBaer però amb bon comportament davant scroll
     return SliverAppBar(
-      backgroundColor: Colors.indigo,
+      backgroundColor: Colors.indigo, // Setting app bar background color
       expandedHeight: 200,
       floating: false,
       pinned: true,
@@ -51,16 +54,18 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
-          color: Colors.black12,
+          color: Colors.black12, // Background color for the title section
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
-            movie.title,
+            movie.title, // Displaying movie title in the app bar
             style: TextStyle(fontSize: 16),
           ),
         ),
         background: FadeInImage(
-          placeholder: AssetImage('assets/loading.gif'),
-          image: NetworkImage(movie.url),
+          placeholder: AssetImage(
+              'assets/loading.gif'), // Placeholder image while loading
+          image:
+              NetworkImage(movie.url), // Displaying movie image in the app bar
           fit: BoxFit.cover,
         ),
       ),
@@ -70,11 +75,14 @@ class _CustomAppBar extends StatelessWidget {
 
 class _PosterAndTitile extends StatelessWidget {
   final BasicMovie movie;
+
+  // Constructor for _PosterAndTitile widget taking a BasicMovie object as a parameter
   const _PosterAndTitile({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -83,8 +91,9 @@ class _PosterAndTitile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
-              placeholder: AssetImage('assets/loading.gif'),
-              image: NetworkImage(movie.url),
+              placeholder: AssetImage(
+                  'assets/loading.gif'), // Placeholder image while loading
+              image: NetworkImage(movie.url), // Displaying movie poster image
               height: 150,
             ),
           ),
@@ -92,20 +101,24 @@ class _PosterAndTitile extends StatelessWidget {
             width: 20,
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 movie.title,
-                style: textTheme.headline5,
+                style: textTheme.headline5, // Styling for movie title
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
               Text(
                 movie.originalTitle,
-                style: textTheme.subtitle1,
+                style: textTheme.subtitle1, // Styling for original movie title
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
-              Text('${movie.releaseYear.year}', style: textTheme.caption),
+              Text(
+                '${movie.releaseYear.year}', // Displaying movie release year
+                style: textTheme.caption,
+              ),
             ],
           )
         ],
@@ -117,14 +130,16 @@ class _PosterAndTitile extends StatelessWidget {
 class _Overview extends StatelessWidget {
   final BasicMovie movie;
 
-  @override
+  // Constructor for _Overview widget taking a BasicMovie object as a parameter
   const _Overview({Key? key, required this.movie}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Text(
-        movie.releaseYear.toString(),
+        movie.releaseYear
+            .toString(), // Displaying movie release year as overview
         textAlign: TextAlign.justify,
         style: Theme.of(context).textTheme.subtitle1,
       ),
